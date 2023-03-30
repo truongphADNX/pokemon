@@ -1,0 +1,27 @@
+:root {
+  --dark: #212121;
+  --light: #f3f3f3;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+body {
+  font-size: 1.6rem;
+  font-family: "Odibee Sans", cursive;
+}
+.view {
+  position: relative;
+  height: 100vh;
+}
+
+.copy-right {
+  left: 50%;
+  position: absolute;
+  bottom: 10px;
+  transform: translateX(-50%);
+}
