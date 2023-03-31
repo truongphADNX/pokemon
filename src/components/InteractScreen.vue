@@ -1,13 +1,26 @@
 <template lang="html">
   <div class="screen">
-    <card-flip
-      v-for="(card, index) in cardsContext"
-      :key="index"
-      :ref="`card-${index}`"
-      :imgUrl="`images/${card}.png`"
-      :card="{ index: index, value: card }"
-      @onFlip="checkRule($event)"
-    />
+    <div
+      class="screen__inner"
+      :style="{
+        width: `${
+          ((((850 - 20 * 2) / Math.sqrt(cardsContext.length) - 10) * 3) / 4 +
+            10 * 2) *
+          Math.sqrt(cardsContext.length)
+        }px`,
+      }"
+    >
+      <card-flip
+        v-for="(card, index) in cardsContext"
+        :key="index"
+        :ref="`card-${index}`"
+        :imgUrl="`images/${card}.png`"
+        :card="{ index: index, value: card }"
+        @onFlip="checkRule($event)"
+        :rules="rules"
+        :cardContext="cardsContext"
+      />
+    </div>
   </div>
 </template>
 <script>
@@ -64,3 +77,20 @@ export default {
   },
 };
 </script>
+<style lang="css" scoped>
+.screen {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background: var(--dark);
+  color: var(--light);
+  top: 0;
+  left: 0;
+}
+
+.screen__inner {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 2rem auto;
+}
+</style>

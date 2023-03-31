@@ -1,5 +1,17 @@
 <template>
-  <div class="card" :class="{ disable: isDisable }">
+  <div
+    class="card"
+    :class="{ disable: isDisable }"
+    :style="{
+      height: `${(850 - 20 * 2) / Math.sqrt(cardContext.length) - 10}px`,
+      width: `${
+        (((850 - 20 * 2) / Math.sqrt(cardContext.length) - 10) * 3) / 4
+      }px`,
+      perspective: `${
+        ((((850 - 20 * 2) / Math.sqrt(cardContext.length) - 10) * 3) / 4) * 1.8
+      }px`,
+    }"
+  >
     <div
       class="card__inner"
       :class="{ 'is-fliped': isFliped }"
@@ -30,19 +42,36 @@ export default {
       type: [Number, String, Array, Object],
       required: true,
     },
+    rules: {
+      type: Array,
+    },
+    cardContext: {
+      type: Array,
+      default: function () {
+        return [];
+      },
+    },
   },
   data() {
     return {
       isFliped: false,
       isDisable: false,
+      countClick: 0,
     };
   },
   methods: {
     onFlipBackCard() {
       this.isFliped = false;
+      this.countClick = 0;
     },
 
     onToggleClick() {
+      if (this.countClick < 2) this.countClick++;
+      if (this.countClick >= 2) return;
+      if (this.rules.length >= 2) {
+        this.countClick = 0;
+        return;
+      }
       if (this.isDisable === true) return false;
       this.isFliped = !this.isFliped;
       if (this.isFliped) this.$emit("onFlip", this.card);
@@ -56,8 +85,6 @@ export default {
 </script>
 <style lang="css">
 .card {
-  width: 90px;
-  height: 120px;
   display: inline-block;
   margin-right: 1.6rem;
   margin-bottom: 1.6rem;
@@ -98,7 +125,7 @@ export default {
 
 .card__face--front .card__content {
   background: url("../assets/images/icon_back.png") no-repeat center center;
-  background-size: 50px 50px;
+  background-size: 70%;
   width: 100%;
   height: 100%;
 }
