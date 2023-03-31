@@ -4,7 +4,7 @@
       class="screen__inner"
       :style="{
         width: `${
-          ((((850 - 20 * 2) / Math.sqrt(cardsContext.length) - 10) * 3) / 4 +
+          ((((850 - 32 * 2) / Math.sqrt(cardsContext.length) - 10) * 3) / 4 +
             10) *
           Math.sqrt(cardsContext.length)
         }px`,
