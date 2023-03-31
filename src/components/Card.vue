@@ -86,8 +86,8 @@ export default {
 <style lang="css">
 .card {
   display: inline-block;
-  margin-right: 1.6rem;
-  margin-bottom: 1.6rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
 }
 
 .card.disable .card__inner {
