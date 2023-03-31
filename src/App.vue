@@ -55,7 +55,6 @@ export default {
       this.settings.cardsContext = shuffled(
         shuffled(shuffled(shuffled(cards)))
       );
-      console.log(this.settings.cardsContext);
       this.settings.startedAt = new Date().getTime();
       this.statusMatch = "match";
     },
